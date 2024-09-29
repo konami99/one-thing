@@ -15,13 +15,7 @@
       }
     },
     "preview": {
-      "distribution": "internal",
-      "android": {
-        "image": "latest"
-      },
-      "ios": {
-        "image": "latest"
-      }
+      "distribution": "internal"
     },
     "production": {
       "autoIncrement": true,
