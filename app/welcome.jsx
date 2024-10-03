@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Pressable, Button } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from '../components/ScreenWrapper';
 import { hp, wp } from '../helpers/common';
@@ -19,6 +19,23 @@ export default Welcome = () => {
             <Text style={styles.punchline}>
 							Master the Power of One Habit at a Time.
             </Text>
+        </View>
+
+				<View style={styles.footer}>
+          <Button 
+            title="Getting Started" 
+            buttonStyle={{marginHorizontal: wp(3)}} 
+            onPress={()=> router.push('signUp')}
+          />
+          <View style={styles.bottomTextContainer}>
+              <Text style={styles.loginText}>
+                Already have an account! 
+              </Text>
+              <Pressable onPress={()=> router.push('/login')}>
+                <Text style={[styles.loginText, {color: theme.colors.primaryDark, fontWeight: theme.fonts.semibold}]}>Login</Text>
+              </Pressable>
+          </View>
+          
         </View>
 			</View>
 		</ScreenWrapper>
