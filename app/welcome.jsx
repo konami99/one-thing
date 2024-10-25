@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Pressable, Button } from 'react-native'
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState } from 'react'
 import ScreenWrapper from '../components/ScreenWrapper';
 import { hp, wp } from '../helpers/common';
 import { theme } from '../constants/theme';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'react-native-web';
+import Button from '../components/Button';
 
 export default Welcome = () => {
   return (
