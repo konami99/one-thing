@@ -1,28 +1,33 @@
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity, Pressable } from 'react-native'
 import React, { useState } from 'react'
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenWrapper from '../components/ScreenWrapper';
+import { StatusBar } from 'expo-status-bar';
+import { Octicons } from '@expo/vector-icons';
 import { hp, wp } from '../helpers/common';
 import { theme } from '../constants/theme';
 import { useRouter } from 'expo-router';
-import { StatusBar } from 'react-native-web';
 import Button from '../components/Button';
 
-export default Welcome = () => {
-  return (
-		<ScreenWrapper bg={ "white" }>
-			<StatusBar style="dark" />
-			<View style={ styles.container }>
-				<Image style={ styles.welcomeImage } resizeMode='contain' source={require('../assets/images/welcome.png')} />
+const WelcomePage = () => {
 
-				{/* title */}
+    const router = useRouter();
+  return (
+    <ScreenWrapper bg={'white'}>
+      <StatusBar style="dark" />
+      <View style={styles.container}>
+        {/* welcome image */}
+        <Image style={styles.welcomeImage} resizeMode='contain' source={require('../assets/images/welcome.png')} />
+
+        {/* title */}
         <View style={{gap: 20}}>
             <Text style={styles.title}>OneThing</Text>
             <Text style={styles.punchline}>
-							Master the Power of One Habit at a Time.
+              Master the Power of One Habit at a Time.
             </Text>
         </View>
 
-				<View style={styles.footer}>
+        <View style={styles.footer}>
           <Button 
             title="Getting Started" 
             buttonStyle={{marginHorizontal: wp(3)}} 
@@ -38,9 +43,9 @@ export default Welcome = () => {
           </View>
           
         </View>
-			</View>
-		</ScreenWrapper>
-	)
+      </View>
+    </ScreenWrapper>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -85,3 +90,5 @@ const styles = StyleSheet.create({
     fontSize: hp(1.6)
   },
 })
+
+export default WelcomePage;
