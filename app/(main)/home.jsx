@@ -2,9 +2,10 @@ import { setStatusBarHidden } from "expo-status-bar"
 import ScreenWrapper from "../../components/ScreenWrapper"
 import { useAuth } from "../../contexts/AuthContext"
 import { supabase } from "../../lib/supabase"
-import { StyleSheet, Text, View, Button } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 import { hp, wp } from '../../helpers/common'
 import { theme } from '../../constants/theme'
+import Button from '../../components/Button'
 
 const Home = () => {
   const { setAuth } = useAuth();
