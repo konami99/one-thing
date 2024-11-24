@@ -5,9 +5,10 @@ import { AuthProvider, useAuth } from '../contexts/AuthContext'
 import { supabase } from '../lib/supabase'
 import { getUserData } from '../services/userService'
 import { LogBox } from 'react-native';
+
 LogBox.ignoreLogs(['Warning: TNodeChildrenRenderer', 'Warning: MemoizedTNodeRenderer', 'Warning: TRenderEngineProvider']); // Ignore log notification by message
+
 const _layout = () => {
-    
   return (
     <AuthProvider>
         <MainLayout />
