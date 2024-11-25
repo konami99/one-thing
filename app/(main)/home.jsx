@@ -19,8 +19,42 @@ const Home = () => {
 
   return (
     <ScreenWrapper>
-      <Text>Home</Text>
-      <Button title="logout" onPress={ onLogout } />
+      <View style={styles.container}>
+        <Text style={styles.title}>Habits</Text>
+        <View style={styles.header}>
+          <Text>November</Text>
+          <View style={styles.header.dates}>
+            <View>
+              <Text>19</Text>
+              <Text>Tu</Text>
+            </View>
+            <View>
+              <Text>19</Text>
+              <Text>Tu</Text>
+            </View>
+            <View>
+              <Text>19</Text>
+              <Text>Tu</Text>
+            </View>
+            <View>
+              <Text>19</Text>
+              <Text>Tu</Text>
+            </View>
+            <View>
+              <Text>19</Text>
+              <Text>Tu</Text>
+            </View>
+            <View>
+              <Text>19</Text>
+              <Text>Tu</Text>
+            </View>
+            <View>
+              <Text>19</Text>
+              <Text>Tu</Text>
+            </View>
+          </View>
+        </View>
+      </View>
     </ScreenWrapper>
   )
 }
@@ -28,19 +62,26 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingHorizontal: wp(4)
+    paddingHorizontal: wp(5)
   },
   header: {
     flexDirection: 'row',
-    alignItems: 'center',
+    height: hp(4),
+    //alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: 10,
-    marginHorizontal: wp(4)
+    //marginHorizontal: wp(4),
+    dates: {
+      flexDirection: 'row',
+      width: '65%',
+      justifyContent: 'space-between',
+    }
   },
   title: {
     color: theme.colors.text,
-    fontSize: hp(3.2),
-    fontWeight: theme.fonts.bold
+    fontSize: hp(5),
+    fontWeight: theme.fonts.bold,
+    marginBottom: 20,
   },
   avatarImage: {
     height: hp(4.3),
