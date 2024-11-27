@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from "react-native"
 import { hp, wp } from '../../helpers/common'
 import { theme } from '../../constants/theme'
 import Button from '../../components/Button'
+import { ScrollView } from "react-native"
 
 const Home = () => {
   const { setAuth } = useAuth();
@@ -54,12 +55,23 @@ const Home = () => {
             </View>
           </View>
         </View>
+
+        <ScrollView>
+          <View style={styles.habitItem}>
+            <Text>habit 1</Text>
+          </View>
+        </ScrollView>
       </View>
     </ScreenWrapper>
   )
 }
 
 const styles = StyleSheet.create({
+  habitItem: {
+    backgroundColor: theme.colors.primaryDark,
+    height: hp(17),
+    borderRadius: 20,
+  },
   container: {
     flex: 1,
     paddingHorizontal: wp(5)
@@ -69,15 +81,17 @@ const styles = StyleSheet.create({
     height: hp(4),
     //alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 10,
-    //marginHorizontal: wp(4),
+    marginBottom: 30,
+    //marginHorizontal: wp(4)
     dates: {
       flexDirection: 'row',
-      width: '65%',
+      width: '60%',
       justifyContent: 'space-between',
+      marginRight: 18,
     }
   },
   title: {
+    height: hp(8),
     color: theme.colors.text,
     fontSize: hp(5),
     fontWeight: theme.fonts.bold,

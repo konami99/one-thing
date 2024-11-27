@@ -10,8 +10,8 @@ import { useRouter } from 'expo-router';
 import Button from '../components/Button';
 
 const WelcomePage = () => {
+  const router = useRouter();
 
-    const router = useRouter();
   return (
     <ScreenWrapper bg={'white'}>
       <StatusBar style="dark" />
@@ -21,10 +21,10 @@ const WelcomePage = () => {
 
         {/* title */}
         <View style={{gap: 20}}>
-            <Text style={styles.title}>OneThing</Text>
-            <Text style={styles.punchline}>
-              Master the Power of One Habit at a Time.
-            </Text>
+          <Text style={styles.title}>OneThing</Text>
+          <Text style={styles.punchline}>
+            Master the Power of One Habit at a Time.
+          </Text>
         </View>
 
         <View style={styles.footer}>
@@ -34,14 +34,13 @@ const WelcomePage = () => {
             onPress={()=> router.push('signUp')}
           />
           <View style={styles.bottomTextContainer}>
-              <Text style={styles.loginText}>
-                Already have an account! 
-              </Text>
-              <Pressable onPress={()=> router.push('/login')}>
-                <Text style={[styles.loginText, {color: theme.colors.primaryDark, fontWeight: theme.fonts.semibold}]}>Login</Text>
-              </Pressable>
+            <Text style={styles.loginText}>
+              Already have an account! 
+            </Text>
+            <Pressable onPress={()=> router.push('/login')}>
+              <Text style={[styles.loginText, {color: theme.colors.primaryDark, fontWeight: theme.fonts.semibold}]}>Login</Text>
+            </Pressable>
           </View>
-          
         </View>
       </View>
     </ScreenWrapper>
