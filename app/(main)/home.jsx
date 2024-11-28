@@ -7,6 +7,7 @@ import { hp, wp } from '../../helpers/common'
 import { theme } from '../../constants/theme'
 import Button from '../../components/Button'
 import { ScrollView } from "react-native"
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 const Home = () => {
   const { setAuth } = useAuth();
@@ -21,7 +22,10 @@ const Home = () => {
   return (
     <ScreenWrapper>
       <View style={styles.container}>
-        <Text style={styles.title}>Habits</Text>
+        <View style={styles.titleSection}>
+          <Text style={styles.title}>Habits</Text>
+          <FontAwesome5 name="plus" size={24} color="black" />
+        </View>
         <View style={styles.header}>
           <Text>November</Text>
           <View style={styles.header.dates}>
@@ -76,6 +80,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: wp(5)
   },
+  titleSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: hp(8),
+    marginBottom: 20,
+  },
   header: {
     flexDirection: 'row',
     height: hp(4),
@@ -91,11 +102,11 @@ const styles = StyleSheet.create({
     }
   },
   title: {
-    height: hp(8),
+    //height: hp(8),
     color: theme.colors.text,
     fontSize: hp(5),
     fontWeight: theme.fonts.bold,
-    marginBottom: 20,
+    //marginBottom: 20,
   },
   avatarImage: {
     height: hp(4.3),
