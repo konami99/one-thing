@@ -12,7 +12,7 @@ import { useState } from "react"
 import { Modal } from 'react-native'
 
 const Home = () => {
-  const { setAuth } = useAuth();
+  const { user } = useAuth();
   const [modalVisible, setModalVisible] = useState(false);
   
   const onLogout = async() => {
@@ -24,6 +24,35 @@ const Home = () => {
 
   const onPress = () => {
     setModalVisible(true);
+  }
+
+  const onSubmit = async() => {
+    //console.log(user.id)
+    /*
+    const { data, error } = await supabase
+      .from('Goal')
+      .select()
+      .eq('userId', user.id)
+    */
+    console.log('insert')
+    const { data, error } = await supabase
+      .from('Goal')
+      .insert({
+        name: 'Jump',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        frequency: 3,
+        minCount: 3,
+        minUnit: 'pages',
+        frequencyRange: 1,
+        streak: 0,
+        count: 0,
+        color: 'white',
+        enabled: true
+      })
+      .select()
+    console.log(error)
+    console.log(data)
   }
 
   return (
@@ -46,6 +75,11 @@ const Home = () => {
                   onPress={() => setModalVisible(!modalVisible)}>
                   <Text style={styles.textStyle}>Hide Modal</Text>
                 </Pressable>
+                <Button 
+                  title="Getting Started" 
+                  buttonStyle={{marginHorizontal: wp(3)}} 
+                  onPress={onSubmit}
+                />
               </View>
             </View>
           </Modal>
