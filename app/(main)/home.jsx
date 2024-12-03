@@ -9,7 +9,7 @@ import Button from '../../components/Button'
 import { ScrollView, Pressable } from "react-native"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useState } from "react"
-import { Modal } from 'react-native'
+import { Modal, TextInput } from 'react-native'
 
 const Home = () => {
   const { user } = useAuth();
@@ -48,7 +48,8 @@ const Home = () => {
         streak: 0,
         count: 0,
         color: 'white',
-        enabled: true
+        enabled: true,
+        userId: user.id,
       })
       .select()
     console.log(error)
@@ -69,7 +70,18 @@ const Home = () => {
             }}>
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <Text style={styles.modalText}>Hello World!</Text>
+                <Text style={styles.modalText}>I want to</Text>
+                <ScrollView
+                  pagingEnabled={true}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  
+                >
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Activity"
+                  />
+                </ScrollView>
                 <Pressable
                   style={[styles.button, styles.buttonClose]}
                   onPress={() => setModalVisible(!modalVisible)}>
@@ -132,6 +144,12 @@ const Home = () => {
 }
 
 const styles = StyleSheet.create({
+  input: {
+    height: 40,
+    //margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -144,7 +162,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
-    alignItems: 'center',
+    //alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -172,7 +190,8 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 15,
-    textAlign: 'center',
+    fontSize: hp(4),
+    textAlign: 'left'
   },
 
   habitItem: {
