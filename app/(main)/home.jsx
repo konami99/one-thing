@@ -8,12 +8,22 @@ import { theme } from '../../constants/theme'
 import Button from '../../components/Button'
 import { ScrollView, Pressable } from "react-native"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Modal, TextInput } from 'react-native'
+import { TrueSheet } from "@lodev09/react-native-true-sheet"
 
 const Home = () => {
   const { user } = useAuth();
   const [modalVisible, setModalVisible] = useState(false);
+  const sheet = useRef(null);
+
+  const present = async () => {
+    await sheet.current?.present();
+  }
+
+  const dismiss = async () => {
+    await sheet.current?.dismiss();
+  }
   
   const onLogout = async() => {
     const { error } = await supabase.auth.signOut();
@@ -61,15 +71,12 @@ const Home = () => {
       <View style={styles.container}>
         <View style={styles.titleSection}>
           <Text style={styles.title}>Habits</Text>
-          <Modal
-            animationType="fade"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              setModalVisible(!modalVisible)
-            }}>
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
+          <TrueSheet
+            ref={sheet}
+            sizes={['auto', 'large']}
+            cornerRadius={24}
+          >
+           
                 <Text style={styles.modalText}>I want to</Text>
                 <ScrollView
                   pagingEnabled={true}
@@ -92,10 +99,10 @@ const Home = () => {
                   buttonStyle={{marginHorizontal: wp(3)}} 
                   onPress={onSubmit}
                 />
-              </View>
-            </View>
-          </Modal>
-          <Pressable onPress={onPress}>
+              
+            <Button onPress={dismiss} title="Dismiss" />
+          </TrueSheet>
+          <Pressable onPress={present}>
             <FontAwesome5 name="plus" size={24} color="black" />
           </Pressable>
         </View>
