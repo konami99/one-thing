@@ -77,29 +77,29 @@ const Home = () => {
             cornerRadius={24}
           >
            
-                <Text style={styles.modalText}>I want to</Text>
-                <ScrollView
-                  pagingEnabled={true}
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                  
-                >
-                  <TextInput
-                    style={styles.input}
-                    placeholder="Activity"
-                  />
-                </ScrollView>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisible(!modalVisible)}>
-                  <Text style={styles.textStyle}>Hide Modal</Text>
-                </Pressable>
-                <Button 
-                  title="Getting Started" 
-                  buttonStyle={{marginHorizontal: wp(3)}} 
-                  onPress={onSubmit}
-                />
-              
+            <Text style={styles.modalText}>I want to</Text>
+            <View
+              pagingEnabled={true}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              style={styles.inputView}
+            >
+              <TextInput
+                style={styles.inputItem}
+                placeholder="Activity"
+              />
+              <Text style={styles.inputItem}>Drink water</Text>
+            </View>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+            <Button 
+              title="Getting Started" 
+              buttonStyle={{marginHorizontal: wp(3)}} 
+              onPress={onSubmit}
+            />
             <Button onPress={dismiss} title="Dismiss" />
           </TrueSheet>
           <Pressable onPress={present}>
@@ -151,11 +151,25 @@ const Home = () => {
 }
 
 const styles = StyleSheet.create({
-  input: {
+  inputItem: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ccc',
     height: 40,
-    //margin: 12,
+    marginRight: 12,
     borderWidth: 1,
     padding: 10,
+    width: wp(20),
+    textAlign: 'center',
+    backgroundColor: 'white',
+    borderRadius: 15,
+    borderWidth: 3,
+    borderColor: theme.colors.primaryDark,
+  },
+  inputView: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   centeredView: {
     flex: 1,
