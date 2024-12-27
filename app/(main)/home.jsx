@@ -9,13 +9,56 @@ import Button from '../../components/Button'
 import { ScrollView, Pressable } from "react-native"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useRef, useState } from "react"
-import { Modal, TextInput } from 'react-native'
+import { Modal, FlatList, TextInput } from 'react-native'
 import { TrueSheet } from "@lodev09/react-native-true-sheet"
 
 const Home = () => {
   const { user } = useAuth();
-  const [modalVisible, setModalVisible] = useState(false);
   const sheet = useRef(null);
+
+  const data = [
+    {
+      id: 1,
+      type: 'TextInput',
+      title: 'Activity',
+    },
+    {
+      id: 2,
+      type: 'Text',
+      title: 'Drink water',
+    },
+    {
+      id: 3,
+      type: 'Text',
+      title: 'Brush teeth',
+    },
+    {
+      id: 4,
+      type: 'Text',
+      title: 'Brush teeth',
+    },
+    {
+      id: 5,
+      type: 'Text',
+      title: 'Brush teeth',
+    },
+    {
+      id: 6,
+      type: 'Text',
+      title: 'Brush teeth',
+    },
+  ];
+
+  const renderItem = ({ item }) => (
+    item.type === 'TextInput'
+    ? <TextInput
+      style={styles.scrollViewItem}
+      placeholder={item.title}
+    />
+    : <View style={styles.scrollViewItem}>
+      <Text style={styles.text}>{item.title}</Text>
+    </View>
+  );
 
   const present = async () => {
     await sheet.current?.present();
@@ -30,10 +73,6 @@ const Home = () => {
     if ( error) {
       Alert.alert('Sign out', 'Error signing out')
     }
-  }
-
-  const onPress = () => {
-    setModalVisible(true);
   }
 
   const onSubmit = async() => {
@@ -78,23 +117,14 @@ const Home = () => {
           >
            
             <Text style={styles.modalText}>I want to</Text>
-            <View
-              pagingEnabled={true}
-              horizontal={true}
+
+            <FlatList
+              data={data}
+              horizontal
+              renderItem={renderItem}
+              keyExtractor={item => item.id}
               showsHorizontalScrollIndicator={false}
-              style={styles.inputView}
-            >
-              <TextInput
-                style={styles.inputItem}
-                placeholder="Activity"
-              />
-              <Text style={styles.inputItem}>Drink water</Text>
-            </View>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
+            />
             <Button 
               title="Getting Started" 
               buttonStyle={{marginHorizontal: wp(3)}} 
@@ -155,17 +185,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#ccc',
-    height: 40,
-    marginRight: 12,
+    flexDirection: 'row',
+    
+  },
+  scrollViewItem: {
     borderWidth: 1,
-    padding: 10,
-    width: wp(20),
-    textAlign: 'center',
-    backgroundColor: 'white',
-    borderRadius: 15,
+    marginRight: 15,
     borderWidth: 3,
-    borderColor: theme.colors.primaryDark,
   },
   inputView: {
     flexDirection: 'row',
